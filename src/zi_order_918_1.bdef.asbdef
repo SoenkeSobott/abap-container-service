@@ -50,7 +50,7 @@ etag master LastChangedAt
 {
   field ( readonly, numbering : managed ) MapUUID;
   field ( readonly ) OrderUUID;
-  field ( readonly ) WasteType, LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
+  field ( readonly ) WasteType, Description, PriceKG, LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
   field ( mandatory ) ContainerUUID;
 
   update;

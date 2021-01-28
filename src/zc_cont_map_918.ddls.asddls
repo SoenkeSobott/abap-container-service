@@ -10,6 +10,8 @@ define view entity ZC_CONT_MAP_918
       ContainerUUID,
       WeightKG,
       WasteType,
+      Description,
+      PriceKG,
       
       /*-- Admin data --*/
       CreatedBy,
