@@ -1,0 +1,35 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: { typeName: 'Waste Type',
+                typeNamePlural: 'Waste Types',
+                title: { type: #STANDARD, label: 'Waste', value: 'Id' } } }
+
+annotate view ZC_WASTE_TYPE_918 with
+{
+  @UI.facet: [ { id:              'Waste',
+                   purpose:         #STANDARD,
+                   type:            #IDENTIFICATION_REFERENCE,
+                   label:           'Waste',
+                   position:        10 } ]
+
+  @UI: {  lineItem:       [ { position: 10 } ],
+          identification: [ { position: 10 } ],
+          selectionField: [ { position: 10 } ] }
+  Id;
+
+  @UI: {  lineItem:       [ { position: 20 } ],
+          identification: [ { position: 20 } ],
+          selectionField: [ { position: 20 } ] }
+  Name;
+
+  @UI: {  lineItem:       [ { position: 30 } ],
+          identification: [ { position: 30 } ],
+          selectionField: [ { position: 30 } ] }
+  Description;
+
+  @UI: {  lineItem:       [ { position: 40 } ],
+          identification: [ { position: 40 } ],
+          selectionField: [ { position: 40 } ] }
+  PriceKg;
+}

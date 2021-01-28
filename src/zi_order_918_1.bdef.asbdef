@@ -1,0 +1,74 @@
+managed;
+
+define behavior for ZI_ORDER_918_1 alias Order implementation in class zbp_i_order_918 unique
+persistent table zorder_918
+lock master
+etag master LastChangedAt
+{
+  field ( readonly, numbering : managed ) OrderUUID;
+  field ( readonly ) id;
+  field ( readonly ) CustomerName, LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
+  field ( mandatory ) CustomerId, DeliveryDate, PickUpDate;
+
+  create;
+  update;
+  delete;
+
+  association _Map { create; }
+
+  determination setInitialStatus on modify { create; }
+  determination calculateOrderID on save { create; }
+
+  validation validateOrder on save { field DeliveryDate, PickUpDate, Status; }
+  validation validateCustomer on save { field CustomerId; }
+
+  action ( features : instance ) deliverOrder result [1] $self;
+  action ( features : instance ) closeOrder result [1] $self;
+
+  association _Customer;
+
+  mapping for zorder_918
+  {
+    OrderUUID = order_uuid;
+    Id = id;
+    CustomerId = customer_id;
+    Description = description;
+    DeliveryDate = delivery_date;
+    PickUpDate = pick_up_date;
+    Status = status;
+    LastChangedAt = last_changed_at;
+    LastChangedBy = last_changed_by;
+    CreatedAt = created_at;
+    CreatedBy = created_by;
+  }
+}
+
+define behavior for ZI_CONT_MAP_918 alias Map implementation in class zbp_i_order_918 unique
+persistent table zcont_map_918
+lock dependent by _Order
+etag master LastChangedAt
+{
+  field ( readonly, numbering : managed ) MapUUID;
+  field ( readonly ) OrderUUID;
+  field ( readonly ) WasteType, LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
+  field ( mandatory ) ContainerUUID;
+
+  update;
+  delete;
+
+  //validation validateAvailability on save { field ContainerUUID, OrderUUID; }
+
+  association _Order;
+
+  mapping for zcont_map_918
+  {
+    MapUUID = map_uuid;
+    OrderUUID = order_uuid;
+    ContainerUUID = container_uuid;
+    LastChangedAt = last_changed_at;
+    LastChangedBy = last_changed_by;
+    CreatedAt = created_at;
+    CreatedBy = created_by;
+  }
+
+}

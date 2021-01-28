@@ -1,0 +1,37 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: { typeName: 'ContainerMap',
+                typeNamePlural: 'ContainerMaps',
+                title: { type: #STANDARD, label: 'ContainerMap', value: 'MapUUID' } } }
+
+annotate view ZC_CONT_MAP_918 with
+{
+  @UI.facet: [ { id:              'ContainerMap',
+                     purpose:         #STANDARD,
+                     type:            #IDENTIFICATION_REFERENCE,
+                     label:           'ContainerMap',
+                     position:        10 } ]
+
+  @UI.hidden: true
+  MapUUID;
+  
+  @UI: {  lineItem:       [ { position: 20, label: 'Container UUID' } ],
+          identification: [ { position: 20, label: 'Container UUID' } ],
+          selectionField: [ { position: 20 } ] }
+  ContainerUUID;
+  
+  @UI: {  lineItem:       [ { position: 30, label: 'Type' } ],
+          identification: [ { position: 30, label: 'Type' } ],
+          selectionField: [ { position: 30 } ] }
+  WasteType;
+  
+  @UI: {  lineItem:       [ { position: 40 } ],
+          identification: [ { position: 40 } ],
+          selectionField: [ { position: 40 } ] }
+  WeightKG;
+  
+  @UI: {  identification: [ { position: 50, label: 'Order UUID' } ],
+          selectionField: [ { position: 50 } ] }
+  OrderUUID;
+}

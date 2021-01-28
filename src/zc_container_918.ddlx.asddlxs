@@ -1,0 +1,37 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: { typeName: 'Container',
+                typeNamePlural: 'Containers',
+                title: { type: #STANDARD, label: 'Container', value: 'ContainerUUID' } } }
+
+annotate view ZC_CONTAINER_918 with
+{
+  @UI.facet: [ { id:              'Container',
+                     purpose:         #STANDARD,
+                     type:            #IDENTIFICATION_REFERENCE,
+                     label:           'Container',
+                     position:        10 } ]
+
+  @UI.hidden: true
+  ContainerUUID;
+
+  @UI: {  identification: [ { position: 10, label: 'Waste UUID' } ],
+          selectionField: [ { position: 10 } ] }  
+  WasteTypeId;
+  
+  @UI: {  lineItem:       [ { position: 20 } ],
+          identification: [ { position: 20 } ],
+          selectionField: [ { position: 20 } ] }
+  WasteType;
+  
+  @UI: {  lineItem:       [ { position: 30, label: 'Description' } ],
+          identification: [ { position: 40, label: 'Description' } ],
+          selectionField: [ { position: 30 } ] }
+  Description;
+  
+  @UI: {  lineItem:       [ { position: 60 } ],
+          identification: [ { position: 60 } ],
+          selectionField: [ { position: 60 } ] }
+  PriceKG;
+}

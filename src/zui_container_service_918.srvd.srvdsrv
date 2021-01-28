@@ -1,0 +1,7 @@
+@EndUserText.label: 'Service definition for container service'
+define service ZUI_CONTAINER_SERVICE_918 {
+  expose ZC_CUSTOMER_918 as Customers;
+  expose ZC_ORDER_918_1 as Orders;
+  expose ZC_CONTAINER_918 as Containers;
+  expose ZC_CONT_MAP_918 as ContainerMappings;
+}

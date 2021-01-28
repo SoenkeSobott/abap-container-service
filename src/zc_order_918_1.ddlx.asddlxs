@@ -1,0 +1,62 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: { typeName: 'Order',
+                typeNamePlural: 'Orders',
+                title: { type: #STANDARD, label: 'Order', value: 'Id' } } }
+
+annotate view ZC_ORDER_918_1 with
+{
+  @UI.facet: [ { id:              'Order',
+                       purpose:         #STANDARD,
+                       type:            #IDENTIFICATION_REFERENCE,
+                       label:           'Order',
+                       position:        10 },
+                     { id:              'ContainerMap',
+                       purpose:         #STANDARD,
+                       type:            #LINEITEM_REFERENCE,
+                       label:           'ContainerMaps',
+                       position:        20,
+                       targetElement:   '_Map'} ]
+
+  @UI: {  lineItem:       [ { position: 10 } ],
+          selectionField: [ { position: 10 } ] }
+  Id;
+  
+  
+   @UI: {  identification: [ { position: 20, label: 'CustomerUUID' } ],
+           selectionField: [ { position: 20 } ] }
+  CustomerId;
+  
+
+  @UI: {  lineItem:       [ { position: 20 } ],
+          selectionField: [ { position: 20 } ] }
+  CustomerName;
+
+
+  @UI: {  lineItem:       [ { position: 30 } ],
+          identification: [ { position: 30 } ],
+          selectionField: [ { position: 30 } ] }
+  Description;
+
+  @UI: {  lineItem:       [ { position: 40 } ],
+          identification: [ { position: 40 } ],
+          selectionField: [ { position: 40 } ] }
+  DeliveryDate;
+
+  @UI: {  lineItem:       [ { position: 50 } ],
+          identification: [ { position: 50 } ],
+          selectionField: [ { position: 50 } ] }
+  PickUpDate;
+
+  @UI: {  lineItem:       [ { position: 60 },
+                           { type: #FOR_ACTION, dataAction: 'deliverOrder', label: 'Deliver Order' },
+                            { type: #FOR_ACTION, dataAction: 'closeOrder', label: 'Close Order' }  
+                          ],
+          identification: [ { position: 60 },
+                           { type: #FOR_ACTION, dataAction: 'deliverOrder', label: 'Deliver Order' },
+                            { type: #FOR_ACTION, dataAction: 'closeOrder', label: 'Close Order' } 
+                          ],
+          selectionField: [ { position: 60 } ] }
+  Status;
+}

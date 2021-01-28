@@ -1,0 +1,8 @@
+projection;
+
+define behavior for ZC_CUSTOMER_918 alias Customer
+{
+  use create;
+  use update;
+  use delete;
+}

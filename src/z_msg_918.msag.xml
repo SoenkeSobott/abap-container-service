@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>Z_MSG_918</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Messages for the container service</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_MSG_918</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Delivery date &apos;&amp;1&apos; must be in the future.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_MSG_918</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Delivery date  &apos;&amp;1&apos; must be before pick up date &apos;&amp;2&apos;.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_MSG_918</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Status &amp;1 is not allowed. Use Open, On-Site or Closed.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_MSG_918</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Customer &amp;1 unkown.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_MSG_918</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Please provide a valid First Name &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_MSG_918</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Please provide a valid Last Name &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_MSG_918</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Please provide a valid Address &amp;1.</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

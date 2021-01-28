@@ -1,0 +1,25 @@
+managed; // implementation in class zbp_i_container_918 unique;
+
+define behavior for ZI_CONTAINER_918 //alias <alias_name>
+persistent table zcontainer_918_1
+lock master
+etag master LastChangedAt
+{
+  field ( readonly, numbering : managed ) ContainerUUID;
+  field ( readonly ) WasteType, Description, PriceKG, LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
+  field ( mandatory )WasteTypeId;
+
+  create;
+  update;
+  delete;
+
+  mapping for zcontainer_918_1
+  {
+    ContainerUUID = container_uuid;
+    WasteTypeId = waste_type_id;
+    LastChangedAt = last_changed_at;
+    LastChangedBy = last_changed_by;
+    CreatedAt = created_at;
+    CreatedBy = created_by;
+  }
+}
