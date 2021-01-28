@@ -12,12 +12,13 @@ annotate view ZC_ORDER_918_1 with
                        type:            #IDENTIFICATION_REFERENCE,
                        label:           'Order',
                        position:        10 },
-                     { id:              'ContainerMap',
+                     { id:              'Container',
                        purpose:         #STANDARD,
                        type:            #LINEITEM_REFERENCE,
-                       label:           'ContainerMaps',
+                       label:           'Containers',
                        position:        20,
                        targetElement:   '_Map'} ]
+
 
   @UI: {  lineItem:       [ { position: 10 } ],
           selectionField: [ { position: 10 } ] }
@@ -29,8 +30,8 @@ annotate view ZC_ORDER_918_1 with
   CustomerId;
   
 
-  @UI: {  lineItem:       [ { position: 20 } ],
-          selectionField: [ { position: 20 } ] }
+  @UI: {  lineItem:       [ { position: 25 } ],
+          selectionField: [ { position: 25 } ] }
   CustomerName;
 
 
@@ -39,15 +40,18 @@ annotate view ZC_ORDER_918_1 with
           selectionField: [ { position: 30 } ] }
   Description;
 
+
   @UI: {  lineItem:       [ { position: 40 } ],
           identification: [ { position: 40 } ],
           selectionField: [ { position: 40 } ] }
   DeliveryDate;
 
+
   @UI: {  lineItem:       [ { position: 50 } ],
           identification: [ { position: 50 } ],
           selectionField: [ { position: 50 } ] }
   PickUpDate;
+
 
   @UI: {  lineItem:       [ { position: 60 },
                            { type: #FOR_ACTION, dataAction: 'deliverOrder', label: 'Deliver Order' },

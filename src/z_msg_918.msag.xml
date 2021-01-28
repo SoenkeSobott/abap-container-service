@@ -48,7 +48,19 @@
      <SPRSL>E</SPRSL>
      <ARBGB>Z_MSG_918</ARBGB>
      <MSGNR>007</MSGNR>
-     <TEXT>Please provide a valid Address &amp;1.</TEXT>
+     <TEXT>Please provide a valid Street &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_MSG_918</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Please provide a valid City &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z_MSG_918</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>Please provide a valid Postcode &amp;1.</TEXT>
     </T100>
    </T100>
   </asx:values>

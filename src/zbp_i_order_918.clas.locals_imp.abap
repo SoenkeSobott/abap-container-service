@@ -34,20 +34,21 @@ CLASS lhc_order DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS deliverOrder FOR MODIFY
       IMPORTING keys FOR ACTION Order~deliverOrder RESULT result.
+
     METHODS closeOrder FOR MODIFY
       IMPORTING keys FOR ACTION Order~closeOrder RESULT result.
+
     METHODS validateCustomer FOR VALIDATE ON SAVE
       IMPORTING keys FOR Order~validateCustomer.
 
     METHODS get_instance_features FOR INSTANCE FEATURES
       IMPORTING keys REQUEST requested_features FOR Order RESULT result.
 
-
 ENDCLASS.
 
 CLASS lhc_order IMPLEMENTATION.
 
-  " Method for adding a random orderId to a new created order
+  " Method for adding a random orderId to a newly created order
   METHOD CalculateOrderID.
     " check if Id is already filled
     READ ENTITIES OF ZI_ORDER_918_1 IN LOCAL MODE
@@ -59,7 +60,7 @@ CLASS lhc_order IMPLEMENTATION.
     DELETE orders WHERE Id IS NOT INITIAL.
     CHECK orders IS NOT INITIAL.
 
-    " Generate random number as id
+    " Generate random number as order id
     DATA: randomOrderId TYPE string.
     DATA(o_rand_i) = cl_abap_random_int=>create( seed = cl_abap_random=>seed( ) min = 10000000 max = 99999999 ).
     randomOrderId = o_rand_i->get_next( ).
@@ -78,7 +79,8 @@ CLASS lhc_order IMPLEMENTATION.
   ENDMETHOD.
 
 
-  " Sets the initial status
+  " Sets the initial status of an order if no user input is given
+  " Default status is 'Open'
   METHOD setInitialStatus.
     " Read relevant instance data
     READ ENTITIES OF ZI_ORDER_918_1 IN LOCAL MODE
@@ -103,7 +105,8 @@ CLASS lhc_order IMPLEMENTATION.
     reported = CORRESPONDING #( DEEP update_reported ).
   ENDMETHOD.
 
-  " Validate order fields
+  " Validate all order related fields.
+  " If an field is invalid the related error message is returned.
   METHOD validateOrder.
     READ ENTITY ZI_ORDER_918_1\\Order FROM VALUE #(
         FOR <root_key> IN keys ( %key-OrderUUID     = <root_key>-OrderUUID
@@ -113,6 +116,7 @@ CLASS lhc_order IMPLEMENTATION.
 
     LOOP AT lt_order_result INTO DATA(ls_order_result).
 
+      " Check if status is valid
       IF ls_order_result-Status <> 'Open' AND ls_order_result-Status <> 'On-Site' AND ls_order_result-Status <> 'Closed'.
         APPEND VALUE #( %key        = ls_order_result-%key
                         OrderUUID   = ls_order_result-OrderUUID ) TO failed-order.
@@ -125,7 +129,8 @@ CLASS lhc_order IMPLEMENTATION.
                         %element-status = if_abap_behv=>mk-on ) TO reported-order.
       ENDIF.
 
-      IF ls_order_result-PickUpDate < ls_order_result-DeliveryDate.  "DeliveryDate before PickUpDate
+      " Check that DeliveryDate is before PickUpDate
+      IF ls_order_result-PickUpDate < ls_order_result-DeliveryDate.
 
         APPEND VALUE #( %key        = ls_order_result-%key
                         OrderUUID   = ls_order_result-OrderUUID ) TO failed-order.
@@ -139,7 +144,8 @@ CLASS lhc_order IMPLEMENTATION.
                         %element-deliverydate = if_abap_behv=>mk-on
                         %element-pickupdate   = if_abap_behv=>mk-on ) TO reported-order.
 
-      ELSEIF ls_order_result-DeliveryDate < cl_abap_context_info=>get_system_date( ).  "Delivery date must be in the future
+      "Check that Delivery date is in the future
+      ELSEIF ls_order_result-DeliveryDate < cl_abap_context_info=>get_system_date( ).
 
         APPEND VALUE #( %key        = ls_order_result-%key
                         OrderUUID   = ls_order_result-OrderUUID ) TO failed-order.
@@ -155,6 +161,8 @@ CLASS lhc_order IMPLEMENTATION.
     ENDLOOP.
   ENDMETHOD.
 
+  " Method that delivers an order. That basically means
+  " that the status is switched to 'On-Site'.
   METHOD deliverOrder.
     MODIFY ENTITIES OF ZI_ORDER_918_1 IN LOCAL MODE
       ENTITY Order
@@ -177,6 +185,8 @@ CLASS lhc_order IMPLEMENTATION.
                           %param = order ) ).
   ENDMETHOD.
 
+  " Method that closes an order. That basically means
+  " that the status is switched to 'Closed'.
   METHOD closeOrder.
     MODIFY ENTITIES OF ZI_ORDER_918_1 IN LOCAL MODE
       ENTITY Order
@@ -199,6 +209,8 @@ CLASS lhc_order IMPLEMENTATION.
                           %param = order ) ).
   ENDMETHOD.
 
+  " Method that reads the status and disables/enables the
+  " related action buttons.
   METHOD get_instance_features.
     " Read the order status of the existing orders
     READ ENTITIES OF ZI_ORDER_918_1 IN LOCAL MODE
@@ -223,8 +235,9 @@ CLASS lhc_order IMPLEMENTATION.
              ) ).
   ENDMETHOD.
 
+  " Method that validates the customer ID
   METHOD validateCustomer.
-    " Read relevant travel instance data
+    " Read relevant instance data
     READ ENTITIES OF ZI_ORDER_918_1 IN LOCAL MODE
       ENTITY Order
         FIELDS ( CustomerId ) WITH CORRESPONDING #( keys )
@@ -232,7 +245,6 @@ CLASS lhc_order IMPLEMENTATION.
 
     DATA customers TYPE SORTED TABLE OF zcustomer_918_1 WITH UNIQUE KEY customer_uuid.
 
-    " Optimization of DB select: extract distinct non-initial customer IDs
     customers = CORRESPONDING #( orders DISCARDING DUPLICATES MAPPING customer_uuid = CustomerID EXCEPT * ).
     DELETE customers WHERE customer_uuid IS INITIAL.
     IF customers IS NOT INITIAL.
@@ -243,7 +255,7 @@ CLASS lhc_order IMPLEMENTATION.
         INTO TABLE @DATA(customers_db).
     ENDIF.
 
-    " Raise msg for non existing and initial customerID
+    " Raise error message for non existing and initial customerID
     LOOP AT orders INTO DATA(order).
       " Clear state messages that might exist
       APPEND VALUE #(  %tky        = order-%tky

@@ -22,6 +22,5 @@ define root view entity ZC_ORDER_918_1
       LastChangedBy,
       
       _Map : redirected to composition child ZC_CONT_MAP_918
-            
-      
+           
 }

@@ -13,25 +13,30 @@ annotate view ZC_CONTAINER_918 with
                      label:           'Container',
                      position:        10 } ]
 
+
   @UI.hidden: true
   ContainerUUID;
+
 
   @UI: {  identification: [ { position: 10, label: 'Waste UUID' } ],
           selectionField: [ { position: 10 } ] }  
   WasteTypeId;
+  
   
   @UI: {  lineItem:       [ { position: 20 } ],
           identification: [ { position: 20 } ],
           selectionField: [ { position: 20 } ] }
   WasteType;
   
+  
   @UI: {  lineItem:       [ { position: 30, label: 'Description' } ],
           identification: [ { position: 40, label: 'Description' } ],
           selectionField: [ { position: 30 } ] }
   Description;
   
-  @UI: {  lineItem:       [ { position: 60 } ],
-          identification: [ { position: 60 } ],
-          selectionField: [ { position: 60 } ] }
+  
+  @UI: {  lineItem:       [ { position: 50 } ],
+          identification: [ { position: 50 } ],
+          selectionField: [ { position: 50 } ] }
   PriceKG;
 }

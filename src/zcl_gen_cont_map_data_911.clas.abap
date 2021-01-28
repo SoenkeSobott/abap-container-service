@@ -16,7 +16,7 @@ CLASS zcl_gen_cont_map_data_911 IMPLEMENTATION.
 
     DATA itab TYPE TABLE OF zcont_map_918.
 
-*   fill internal order table (itab)
+*   fill internal mappings table (itab)
     itab = VALUE #(
       ( map_uuid = '00CC168C31731EDB97CFAB9EE9F853C1' order_uuid = '12DB768C31731EDB97CFAB9EE9F853C1'
         container_uuid = '12DB768C31731EDB97CFAB9EE9F853B1'

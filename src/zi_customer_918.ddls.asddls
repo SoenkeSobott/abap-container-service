@@ -3,21 +3,19 @@
 @Search.searchable: true
 define root view entity ZI_CUSTOMER_918
   as select from zcustomer_918_1
-  
-  //composition [0..*] of ZI_ORDER_918_1 as _Order
-  
+
+  /* Associations */
   association [0..*] to ZI_ORDER_918_1 as _Order on $projection.CustomerUUID = _Order.CustomerId
 
 {
-      @Search.defaultSearchElement: true
   key customer_uuid   as CustomerUUID,
       @Search.defaultSearchElement: true
       id              as Id,
-      @Search.defaultSearchElement: true
       first_name      as FirstName,
-      @Search.defaultSearchElement: true
       last_name       as LastName,
-      address         as Address,
+      street          as Street,
+      city            as City,
+      postcode        as Postcode,
       company         as Company,
       contact_person  as ContactPerson,
 
@@ -31,5 +29,6 @@ define root view entity ZI_CUSTOMER_918
       @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at as LastChangedAt,
 
+      /* Associations */
       _Order
 }

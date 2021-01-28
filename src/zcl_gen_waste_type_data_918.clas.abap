@@ -30,7 +30,7 @@ CLASS zcl_gen_waste_type_data_918 IMPLEMENTATION.
         created_by = 'MUSTERMANN' created_at = '20200702105400.3647680' last_changed_by = 'MUSTERFRAU' last_changed_at = '20200702105400.3647680' )
       ( id = '07DB768C31731EDB97CFAB9EE9F853C1' name = 'Erde' description = 'Only naturals' price_kg = 20
         created_by = 'MUSTERMANN' created_at = '20200702105400.3647680' last_changed_by = 'MUSTERFRAU' last_changed_at = '20200702105400.3647680' )
-      ( id = '08DB768C31731EDB97CFAB9EE9F853C1' name = 'Boden' description = 'WTF is boden' price_kg = 25
+      ( id = '08DB768C31731EDB97CFAB9EE9F853C1' name = 'Boden' description = 'Boden halt :D' price_kg = 25
         created_by = 'MUSTERMANN' created_at = '20200702105400.3647680' last_changed_by = 'MUSTERFRAU' last_changed_at = '20200702105400.3647680' )
     ).
 

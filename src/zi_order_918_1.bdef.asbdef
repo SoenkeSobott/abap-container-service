@@ -56,8 +56,6 @@ etag master LastChangedAt
   update;
   delete;
 
-  //validation validateAvailability on save { field ContainerUUID, OrderUUID; }
-
   association _Order;
 
   mapping for zcont_map_918
@@ -70,5 +68,4 @@ etag master LastChangedAt
     CreatedAt = created_at;
     CreatedBy = created_by;
   }
-
 }

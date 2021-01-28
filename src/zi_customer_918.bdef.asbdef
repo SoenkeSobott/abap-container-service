@@ -7,7 +7,7 @@ etag master LastChangedAt
 {
   field ( readonly, numbering : managed ) CustomerUUID;
   field ( readonly ) Id, LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
-  field ( mandatory ) FirstName, LastName, Address;
+  field ( mandatory ) FirstName, LastName, Street, City, Postcode;
 
   create;
   update;
@@ -15,7 +15,7 @@ etag master LastChangedAt
 
   determination calculateCustomerID on save { create; }
 
-  validation validateCustomer on save { field FirstName, LastName, Address; }
+  validation validateCustomer on save { field FirstName, LastName, Street, City, Postcode; }
 
   mapping for ZCUSTOMER_918_1
   {
@@ -23,7 +23,9 @@ etag master LastChangedAt
     Id = id;
     FirstName = first_name;
     LastName = last_name;
-    Address = address;
+    Street = street;
+    City = city;
+    Postcode = postcode;
     Company = company;
     ContactPerson = contact_person;
     LastChangedAt = last_changed_at;

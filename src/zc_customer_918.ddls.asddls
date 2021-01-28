@@ -8,7 +8,9 @@ define root view entity ZC_CUSTOMER_918
       Id,
       FirstName,
       LastName,
-      Address,
+      Street,
+      City,
+      Postcode,
       Company,
       ContactPerson,
 
@@ -18,5 +20,4 @@ define root view entity ZC_CUSTOMER_918
       LastChangedBy,
       LastChangedAt
       
-      //_Order : redirected to composition child ZC_ORDER_918_1
 }

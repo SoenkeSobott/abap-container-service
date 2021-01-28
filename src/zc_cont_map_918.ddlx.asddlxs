@@ -7,31 +7,36 @@
 
 annotate view ZC_CONT_MAP_918 with
 {
-  @UI.facet: [ { id:              'ContainerMap',
+  @UI.facet: [ { id:              'ContainerMapping',
                      purpose:         #STANDARD,
                      type:            #IDENTIFICATION_REFERENCE,
-                     label:           'ContainerMap',
+                     label:           'ContainerMappings',
                      position:        10 } ]
+
 
   @UI.hidden: true
   MapUUID;
   
-  @UI: {  lineItem:       [ { position: 20, label: 'Container UUID' } ],
-          identification: [ { position: 20, label: 'Container UUID' } ],
-          selectionField: [ { position: 20 } ] }
+  
+  @UI: {  lineItem:       [ { position: 10, label: 'Container UUID' } ],
+          identification: [ { position: 10, label: 'Container UUID' } ],
+          selectionField: [ { position: 10 } ] }
   ContainerUUID;
   
-  @UI: {  lineItem:       [ { position: 30, label: 'Type' } ],
-          identification: [ { position: 30, label: 'Type' } ],
-          selectionField: [ { position: 30 } ] }
+  
+  @UI: {  lineItem:       [ { position: 20, label: 'Type' } ],
+          identification: [ { position: 20, label: 'Type' } ],
+          selectionField: [ { position: 20 } ] }
   WasteType;
   
-  @UI: {  lineItem:       [ { position: 40 } ],
-          identification: [ { position: 40 } ],
-          selectionField: [ { position: 40 } ] }
+  
+  @UI: {  lineItem:       [ { position: 30 } ],
+          identification: [ { position: 30 } ],
+          selectionField: [ { position: 30 } ] }
   WeightKG;
   
-  @UI: {  identification: [ { position: 50, label: 'Order UUID' } ],
-          selectionField: [ { position: 50 } ] }
+  
+  @UI: {  identification: [ { position: 40, label: 'Order UUID' } ],
+          selectionField: [ { position: 40 } ] }
   OrderUUID;
 }
